@@ -12,5 +12,17 @@
   },
   "background": {
     "service_worker": "kanji-search.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*"],
+      "js": ["kanji-search-content-script.js"]
+    }
+  ],
+  "commands": {
+    "search-selected-kanji": {
+      "suggested_key": "Ctrl+Shift+K",
+      "description": "Search for the selected kanji"
+    }
   }
 }

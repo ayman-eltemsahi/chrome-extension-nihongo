@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log("adding listener"),chrome.runtime.onMessage.addListener(((e,o,n)=>{var t;if("GET_SELECTED_TEXT"===e){const e=null===(t=document.getSelection())||void 0===t?void 0:t.toString();console.log("selection",e),n(e)}}))})();
