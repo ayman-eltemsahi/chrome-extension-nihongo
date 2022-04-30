@@ -23,8 +23,11 @@ const tabExists = (tabId: number) =>
 
 const handleKanjiSearch = async (input?: string) => {
   const text = input?.trim()[0];
-  const url = `https://app.kanjialive.com/${text}`;
+  const japandictUrl = `https://www.japandict.com/kanji/${text}`;
+  const kanjiAliveUrl = `https://app.kanjialive.com/${text}`;
+  const jishoUrl = `https://jisho.org/search/%23kanji%20${text}`;
 
+  const url = jishoUrl;
   const tabId = Number(await getItem(TAB_ID_KEY));
   if (tabId > 0 && (await tabExists(tabId))) {
     chrome.tabs.update(tabId, { active: true, url });
