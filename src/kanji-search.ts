@@ -22,10 +22,13 @@ const tabExists = (tabId: number) =>
     .catch(() => false);
 
 const handleKanjiSearch = async (input?: string) => {
-  const text = input?.trim()[0];
+  const fullText = input?.trim();
+  if (!fullText) return;
+
+  const text = fullText[0];
   const japandictUrl = `https://www.japandict.com/kanji/${text}`;
   const kanjiAliveUrl = `https://app.kanjialive.com/${text}`;
-  const jishoUrl = `https://jisho.org/search/%23kanji%20${text}`;
+  const jishoUrl = `https://jisho.org/search/%23kanji%20${fullText}`;
 
   const url = jishoUrl;
   const tabId = Number(await getItem(TAB_ID_KEY));
