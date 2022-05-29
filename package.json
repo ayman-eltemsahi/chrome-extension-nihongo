@@ -1,7 +1,7 @@
 {
   "name": "chrome-extension-nihongo",
   "version": "1.0.0",
-  "description": "",
+  "description": "Easily search for kanji words to see their meanings, stroke order ...etc.",
   "main": "index.js",
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",

@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log("adding listener"),chrome.runtime.onMessage.addListener(((e,o,n)=>{var t;if("GET_SELECTED_TEXT"===e){const e=null===(t=document.getSelection())||void 0===t?void 0:t.toString();console.log("selection",e),n(e)}}))})();
+(()=>{"use strict";console.log("adding listener"),chrome.runtime.onMessage.addListener(((e,n,o)=>{var t;"GET_SELECTED_TEXT"===e&&o(null===(t=document.getSelection())||void 0===t?void 0:t.toString())}))})();

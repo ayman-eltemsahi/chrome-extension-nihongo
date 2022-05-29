@@ -25,9 +25,8 @@ const handleKanjiSearch = async (input?: string) => {
   const fullText = input?.trim();
   if (!fullText) return;
 
-  const text = fullText[0];
-  const japandictUrl = `https://www.japandict.com/kanji/${text}`;
-  const kanjiAliveUrl = `https://app.kanjialive.com/${text}`;
+  const japandictUrl = `https://www.japandict.com/kanji/${fullText[0]}`;
+  const kanjiAliveUrl = `https://app.kanjialive.com/${fullText[0]}`;
   const jishoUrl = `https://jisho.org/search/%23kanji%20${fullText}`;
 
   const url = jishoUrl;
@@ -48,7 +47,7 @@ chrome.contextMenus.onClicked.addListener((info) => {
 });
 
 chrome.commands.onCommand.addListener((command) => {
-  if (command !== SearchSelectedKanjiCommand) return;
-
-  getSelectedText().then((text) => handleKanjiSearch(text));
+  if (command === SearchSelectedKanjiCommand) {
+    getSelectedText().then((text) => handleKanjiSearch(text));
+  }
 });
