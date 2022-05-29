@@ -4,7 +4,7 @@
   "name": "Kanji Search",
   "description": "Easily search for kanji words to see their meanings, stroke order ...etc.",
   "version": "1.0",
-  "permissions": ["contextMenus", "storage"],
+  "permissions": ["contextMenus"],
   "icons": {
     "16": "assets/icon.png",
     "64": "assets/icon.png",

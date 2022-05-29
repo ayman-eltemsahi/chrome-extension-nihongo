@@ -1,7 +1,6 @@
-import { getSelectedText } from "./utils";
-
-const SEARCH_KANJI = "search-kanji";
-const TAB_ID_KEY = "search-kanji-tab-id";
+import { SEARCH_KANJI, TAB_ID_KEY } from "./consts";
+import { getItem } from "./storage";
+import { getSelectedText, openNewTab } from "./utils";
 
 const SearchSelectedKanjiCommand = "search-selected-kanji";
 
@@ -10,10 +9,6 @@ chrome.contextMenus.create({
   title: "Kanji Search %s",
   contexts: ["selection"],
 });
-
-const getItem = (key: string) => new Promise((res) => chrome.storage.local.get([key], (result) => res(result?.[key])));
-const setItem = (key: string, value: string) =>
-  new Promise((res) => chrome.storage.local.set({ [key]: value }, () => res(value)));
 
 const tabExists = (tabId: number) =>
   chrome.tabs
@@ -34,8 +29,7 @@ const handleKanjiSearch = async (input?: string) => {
   if (tabId > 0 && (await tabExists(tabId))) {
     chrome.tabs.update(tabId, { active: true, url });
   } else {
-    const tab = await chrome.tabs.create({ url });
-    await setItem(TAB_ID_KEY, tab?.id?.toString() || "");
+    await openNewTab(url);
   }
 };
 

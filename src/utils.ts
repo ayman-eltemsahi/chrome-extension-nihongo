@@ -1,3 +1,6 @@
+import { TAB_ID_KEY } from "./consts";
+import { setItem } from "./storage";
+
 export const getSelectedText = () =>
   new Promise<string | undefined>((resolve, reject) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -12,3 +15,8 @@ export const getSelectedText = () =>
       });
     });
   });
+
+export const openNewTab = async (url: string) => {
+  const tab = await chrome.tabs.create({ url });
+  await setItem(TAB_ID_KEY, tab?.id?.toString() || "");
+};
